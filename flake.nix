@@ -30,6 +30,11 @@
                     npm.install.enable = true;
                   };
 
+                  pre-commit = {
+                    hooks.prettier.enable = true;
+                    settings.prettier.binPath = ./node_modules/.bin/prettier;
+                  };
+
                   # https://devenv.sh/reference/options/
                   packages = [ pkgs.hello ];
 
