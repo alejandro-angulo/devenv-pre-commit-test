@@ -35,9 +35,6 @@
                     settings.prettier.binPath = ./node_modules/.bin/prettier;
                   };
 
-                  # https://devenv.sh/reference/options/
-                  packages = [ pkgs.hello ];
-
                   enterShell = ''
                     export PATH=./node_modules/.bin:$PATH
                   '';
