@@ -3,6 +3,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     systems.url = "github:nix-systems/default";
     devenv.url = "github:cachix/devenv";
+
+    patched-pre-commit-hooks.url = "github:alejandro-angulo/pre-commit-hooks.nix/prevent-copies";
+    devenv.inputs.pre-commit-hooks.follows = "patched-pre-commit-hooks";
   };
 
   nixConfig = {
@@ -32,7 +35,10 @@
 
                   pre-commit = {
                     hooks.prettier.enable = true;
-                    settings.prettier.binPath = ./node_modules/.bin/prettier;
+                    settings.prettier = {
+                      binPath = ./node_modules/.bin/prettier;
+                      skipBinCopy = true;
+                    };
                   };
 
                   enterShell = ''
